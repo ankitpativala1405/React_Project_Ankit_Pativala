@@ -41,6 +41,10 @@ export function Counter() {
           className={styles.textbox}
           aria-label="Set increment amount"
           value={incrementAmount}
+          style={{
+            backgroundColor: 'black',
+            color: 'white',
+          }}
           onChange={(e) => setIncrementAmount(e.target.value)}
         />
         <button
