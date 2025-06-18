@@ -10,9 +10,9 @@ function App() {
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <div
         className={`min-h-screen transition-colors duration-300 ${
-          theme === "light"
-            ? "bg-white text-gray-900"
-            : "bg-gray-900 text-white"
+          theme == "dark"
+          ? "bg-gray-900 text-white"
+          : "bg-white text-gray-900"
         } flex flex-col items-center justify-center px-6 py-10`}
       >
         <h1 className="text-4xl font-bold mb-4">{theme} MODE ON</h1>
