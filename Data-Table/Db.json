@@ -1,0 +1,28 @@
+{
+  "Students": [
+    {
+      "name": "Ankitj",
+      "email": "ankit@gmail.com",
+      "phone": "8980957637",
+      "password": "1234567890",
+      "agree": true,
+      "id": "dc85"
+    },
+    {
+      "id": "ff2b",
+      "name": "jigar",
+      "email": "dafadf@asa.com",
+      "phone": "9638527410",
+      "password": "dghsrgjsfyhkf",
+      "agree": true
+    },
+    {
+      "name": "abc00",
+      "email": "abc00@gmail.com",
+      "phone": "123456078900",
+      "password": "0123012301234",
+      "agree": true,
+      "id": "9f20"
+    }
+  ]
+}

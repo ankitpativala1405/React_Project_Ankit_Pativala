@@ -1,4 +1,5 @@
 import React from "react";
+// import { useNavigate } from "react-router";
 import {
   Table,
   TableBody,
@@ -10,6 +11,9 @@ import {
 import { Link } from "react-router-dom";
 
 const TableComponent = ({ rows }) => {
+
+  // const navigate = useNavigate()
+
   return (
     <div className="overflow-x-auto">
       <div className="container mx-auto p-10">
@@ -36,11 +40,13 @@ const TableComponent = ({ rows }) => {
                   {row.name}
                 </TableCell>
                 <TableCell>{row.email}</TableCell>
-                <TableCell>{row.number}</TableCell>
+                <TableCell>{row.phone}</TableCell>
                 <TableCell>{row.password}</TableCell>
                 <TableCell>
                   <Link
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                    //  onClick={() => navigate(`/edit/${row.id}`)} 
+                    to={`/edit/${row.id}`}
                   >
                     Edit
                   </Link>

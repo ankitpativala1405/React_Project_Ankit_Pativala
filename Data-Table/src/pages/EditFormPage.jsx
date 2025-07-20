@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-const FormPage = () => {
-  const navigate = useNavigate()
+const EditFormPage = () => {
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -14,6 +14,26 @@ const FormPage = () => {
     agree: false,
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(`http://localhost:3000/Students/${id}`);
+        const data = await res.json();
+        setFormData({
+          name: data.name ,
+          email: data.email,
+          phone: data.phone,
+          password: data.password,
+          agree: data.agree || false,
+        });
+      } catch (err) {
+        console.error("Failed to fetch student:", err);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
   const handleChange = (e) => {
     const { id, value, type, checked } = e.target;
     setFormData((prevData) => ({
@@ -22,22 +42,22 @@ const FormPage = () => {
     }));
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data Submitted:", formData);
+    console.log("Updated Data:", formData);
 
-     await fetch("http://localhost:3000/Students" , {
-      method:"POST",
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(formData)
-    })
-    navigate('/')
+    await fetch(`http://localhost:3000/Students/${id}`, {
+      method: "PATCH", 
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
+    navigate("/");
   };
 
   return (
     <>
-      <h1 className="text-center text-4xl py-4 font-bold">Registration Form</h1>
+      <h1 className="text-center text-4xl py-4 font-bold">Edit Student</h1>
       <div className="flex justify-center items-center w-full h-screen">
         <form
           onSubmit={handleSubmit}
@@ -117,11 +137,11 @@ const FormPage = () => {
             </Label>
           </div>
 
-          <Button type="submit">Register new account</Button>
+          <Button type="submit">Update Student</Button>
         </form>
       </div>
     </>
   );
 };
 
-export default FormPage;
+export default EditFormPage;

@@ -1,33 +1,26 @@
 import TableComponent from "../components/TableComponent";
-
-const users = [
-  {
-    name: "John Doe",
-    email: "john@example.com",
-    number: "+1 234 567 890",
-    password: "••••••••",
-    editLink: "/edit/1",
-  },
-  {
-    name: "Jane Smith",
-    email: "jane@example.com",
-    number: "+1 987 654 321",
-    password: "••••••••",
-    editLink: "/edit/2",
-  },
-  {
-    name: "Bob Johnson",
-    email: "bob@example.com",
-    number: "+1 555 666 777",
-    password: "••••••••",
-    editLink: "/edit/3",
-  },
-];
+import { useState, useEffect } from "react";
 
 export function TablePage() {
+
+  const [student, setstudent] = useState([])
+
+  const fetchStudentData = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/Students")
+      const data = await res.json()
+      setstudent(data)
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    return () => fetchStudentData()
+  }, [])
   return (
     <div className="overflow-x-auto">
-    <TableComponent rows={users} />
+      <TableComponent rows={student} />
     </div>
   );
 }
