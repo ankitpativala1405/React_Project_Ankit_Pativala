@@ -16,7 +16,7 @@ function App() {
           onClick={() => dispatch(toggleTheme())}
           className="px-4 py-2 mb-4 rounded bg-blue-500 text-white hover:bg-blue-700 transition"
         >
-          Toggle Theme
+          {theme == 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
         </button>
         <img src={logo} className="App-logo" alt="logo" />
         <Counter />
