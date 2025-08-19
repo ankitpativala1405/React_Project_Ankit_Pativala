@@ -3,7 +3,6 @@ import TaskList from "../service/Tasks";
 
 const AllList = ({ setEditingTask }) => {
   const [task, setTask] = useState([]);
-  // const [_, setIsEdit] = useState(false);
 
   console.log("tasks", task);
 
